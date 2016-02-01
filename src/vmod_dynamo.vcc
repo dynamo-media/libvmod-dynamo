@@ -1,0 +1,17 @@
+#
+# Copyright Dynamo-Media (c) 2016.
+#
+# (vmodtool requires this format.)
+#
+
+$Module dynamo 3 Dynamo VMOD
+
+DESCRIPTION
+===========
+
+Custom functions.
+
+$Function STRING query_get(STRING, STRING)
+
+The different functions provided by the VMOD should also have their own
+embedded documentation. This section is for the hello() function.

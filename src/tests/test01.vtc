@@ -1,0 +1,22 @@
+varnishtest "Test dynamo vmod"
+
+server s1 {
+       rxreq
+       txresp
+} -start
+
+varnish v1 -vcl+backend {
+	import dynamo from "${vmod_topbuild}/src/.libs/libvmod_dynamo.so";
+
+	sub vcl_deliver {
+		set resp.http.hello = dynamo.query_get("/test?helloz=1&hello=world", "hello");
+	}
+} -start
+
+client c1 {
+	txreq -url "/"
+	rxresp
+	expect resp.http.hello == "world"
+}
+
+client c1 -run
